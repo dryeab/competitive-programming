@@ -1,13 +1,9 @@
+# link -  https://leetcode.com/problems/sorting-the-sentence/
+
 class Solution:
     def sortSentence(self, s: str) -> str:
         result = [""]*10
-        i = 0
-        j = 0
-        while (j < len(s)):
-            if s[j].isdigit():
-                result[int(s[j])] = s[i:j]
-                j += 2
-                i = j
-            else: j += 1
-                
+        splited = s.split()
+        for i in splited:
+            result[int(i[-1])] = i[:-1]            
         return " ".join(result).strip()
