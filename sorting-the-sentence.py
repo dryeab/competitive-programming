@@ -2,8 +2,7 @@
 
 class Solution:
     def sortSentence(self, s: str) -> str:
-        result = [""]*10
-        splited = s.split()
-        for i in splited:
-            result[int(i[-1])] = i[:-1]            
-        return " ".join(result).strip()
+        ans = sorted(s.split(), key=lambda x: x[-1])
+        return " ".join([x[:-1] for x in ans])
+        
+
