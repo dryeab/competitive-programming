@@ -1,4 +1,6 @@
+
 # link - https://codeforces.com/problemset/problem/768/B
+
 # space: O(log(n))
 # time: O(log(n))
 
