@@ -2,7 +2,7 @@
 # link - https://leetcode.com/problems/find-kth-bit-in-nth-binary-string/
 
 # space: 0(1)
-# time: O(n)
+# time: O(n) < O(20)
 
 
 # solution 1
