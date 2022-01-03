@@ -1,6 +1,9 @@
 
 # link - https://leetcode.com/problems/k-th-symbol-in-grammar/
 
+# space: O(1)
+# time: O(n) (n = number of rows)
+
 class Solution:
     def kthGrammar(self, n: int, k: int) -> int:
 
