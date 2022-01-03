@@ -1,6 +1,35 @@
 
 # link - https://leetcode.com/problems/find-kth-bit-in-nth-binary-string/
 
+# space: 0(1)
+# time: O(n)
+
+
+# solution 1
+
+class Solution:
+    def findKthBit(self, n: int, k: int) -> str:
+
+        def helper(n, k):
+            if n == 1: return 0
+            
+            mid = (2**n)/2
+            
+            if k == mid: return 1
+        
+            if k < mid: return helper(n-1, k)
+           
+            k = 2**(n-1) - (k-mid)
+            
+            val = helper(n-1, k)
+            
+            return 0 if val == 1 else 1
+        
+        return str(helper(n,k))
+
+    
+# solution 2
+
 class Solution:
     def findKthBit(self, n: int, k: int) -> str:
 
