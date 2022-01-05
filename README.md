@@ -1,3 +1,3 @@
 # competitive-programming
 
-My Solutions to leetcode.com problems.
+My Solutions to [leetcode](https://www.leeetcode.com) problems.
