@@ -1,7 +1,7 @@
 # link - https://leetcode.com/problems/minimum-non-zero-product-of-the-array-elements/
 
 # space: O(1)
-# time: O(1)
+# time: O(p)
 
 class Solution:
     def minNonZeroProduct(self, p: int) -> int:
