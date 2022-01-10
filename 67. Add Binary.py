@@ -4,6 +4,7 @@
 # time: O(x) 
 # : x - length of the longest of the two
 
+# solution 1
 class Solution:
     def addBinary(self, a: str, b: str) -> str:
         carry = 0
@@ -38,4 +39,12 @@ class Solution:
         
         
         return "".join(ans[::-1])
+
+    
+# solution 2    
+class Solution:
+    def addBinary(self, a: str, b: str) -> str:
+        a = int(a, 2)
+        b = int(b, 2)
+        return bin(a + b)[2:]
 
