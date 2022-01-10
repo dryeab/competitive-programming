@@ -2,7 +2,7 @@
 
 # space: O(x) 
 # time: O(x) 
-# : x - length of the longest of the two
+# : x = max(len(a), len(b))
 
 # solution 1
 class Solution:
@@ -41,10 +41,8 @@ class Solution:
         return "".join(ans[::-1])
 
     
-# solution 2    
+# solution 2 - one liner  
 class Solution:
     def addBinary(self, a: str, b: str) -> str:
-        a = int(a, 2)
-        b = int(b, 2)
-        return bin(a + b)[2:]
+        return bin(int(a, 2) + int(b, 2))[2:]
 
