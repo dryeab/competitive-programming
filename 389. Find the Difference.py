@@ -1,7 +1,7 @@
 # link - https://leetcode.com/problems/find-the-difference/
 
-# space: O(len(s)+len(t))
-# time: O(len(s)+len(t))
+# space: O(1) ~ O(26)
+# time: O(n)
 
 class Solution:
     def findTheDifference(self, s: str, t: str) -> str:
