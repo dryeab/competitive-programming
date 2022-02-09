@@ -1,6 +1,9 @@
 
 # link - https://leetcode.com/problems/valid-parentheses
 
+# space: O(n)
+# time: O(n)
+
 class Solution:
     def isValid(self, s: str) -> bool:
         l = []
