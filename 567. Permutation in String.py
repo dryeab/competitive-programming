@@ -1,8 +1,8 @@
 
 # link - https://leetcode.com/problems/permutation-in-string/
 
-# space: O(n)
-# time: -
+# space: O(1) ~ O(26)
+# time: O(n) ~ O(26n)
 
 class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
