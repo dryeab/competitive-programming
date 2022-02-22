@@ -7,7 +7,7 @@
 class Solution:
     def lastStoneWeight(self, stones: List[int]) -> int:
         
-        stones = list(map(lambda x: -x, stones))
+        stones = [-stone for stone in stones]
         heapq.heapify(stones)
         
         while len(stones) > 1:
