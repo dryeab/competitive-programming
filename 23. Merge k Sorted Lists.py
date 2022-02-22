@@ -3,6 +3,9 @@
 
 # solution 1
 
+# space: O(n)
+# time: O(nlog(n))
+
 import heapq
 
 class Solution:
