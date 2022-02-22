@@ -19,9 +19,20 @@ class Solution:
                 
         return (x-1)*(y-1)
 
+    
+# Solution 2
+
+# space: O(n)
+# time: O(n)
+
+class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        nums = [-num for num in nums]
+        heapq.heapify(nums)
+        return (-heapq.heappop(nums)- 1) * (-heapq.heappop(nums) - 1)
       
       
-# solution 2
+# solution 3
 
 # space: O(1)
 # time: O(nlog(n))
