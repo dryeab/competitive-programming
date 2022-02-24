@@ -1,22 +1,28 @@
 
-# link - https://leetcode.com/problems/kth-largest-element-in-an-array/
+# Link - https://leetcode.com/problems/kth-largest-element-in-an-array/
 
-# space: O(1)
-# time: O(nlog(n))
-
-# solution 1
-
-import heapq
+# Solution 1
+    # Space: O(k)
+    # Time: O(n*log(k))
 
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
-        nums = list(map(lambda x: -x, nums))
-        heapq.heapify(nums)
-        for i in range(k):
-            val = heapq.heappop(nums)
-        return -val
+        
+        heap = []
+        for num in nums:
+            if len(heap) < k:
+                heapq.heappush(heap, num)
+            else:
+                if heap[0] < num:
+                    heapq.heappushpop(heap, num)
+        
+        return heap[0]
       
-# solution 2
+# Solution 2
+    # Space: O(1)
+    # Time: O(n*log(n))
+    
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
-        return sorted(nums)[-k]
+        nums.sort()
+        return nums[-k]
