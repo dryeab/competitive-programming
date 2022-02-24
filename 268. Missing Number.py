@@ -1,14 +1,10 @@
 # link - https://leetcode.com/problems/missing-number/
 
+# Solution 1
+    # Space: O(1)
+    # Time: O(n)
+    
 class Solution:
     def missingNumber(self, nums: List[int]) -> int:
-        i = 0
-        while (i < len(nums)):
-            if nums[i] < len(nums) and nums[nums[i]] != nums[i]:
-                nums[nums[i]], nums[i] = nums[i], nums[nums[i]]
-            else:
-                i += 1
-        for i in range(len(nums)):
-            if nums[i] != i:
-                return i
-        return len(nums)
+        n = len(nums)
+        return (n*(n+1)//2) - sum(nums)
