@@ -1,16 +1,19 @@
 
 # Link - https://leetcode.com/problems/kth-largest-element-in-a-stream/
 
-# Space: O(k)
-
 class KthLargest:
 
     def __init__(self, k: int, nums: List[int]):
-        self.k, self.heap = k, nums
-        heapq.heapify(self.heap)
+        
+        self.k = k
+        self.nums = nums
+        heapq.heapify(nums)
 
     def add(self, val: int) -> int:
-        heapq.heappush(self.heap, val)
-        for _ in range(len(self.heap)- self.k):
-            heapq.heappop(self.heap)
-        return self.heap[0]
+        
+        heapq.heappush(self.nums, val)
+        
+        while len(self.nums) > self.k:
+            heapq.heappop(self.nums)
+        
+        return self.nums[0]

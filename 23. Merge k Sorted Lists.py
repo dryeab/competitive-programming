@@ -1,33 +1,5 @@
 
-# link - https://leetcode.com/problems/merge-k-sorted-lists/
-
-# Solution 1
-    # Space: O(n)
-    # Time: O(n*log(n))
-
-class Solution:
-    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
-        
-        ans = []
-        
-        for lst in lists:
-            while lst:
-                heapq.heappush(ans, lst.val)
-                lst = lst.next
-        
-        head = tail = None
-        
-        while ans:
-            node = ListNode(heapq.heappop(ans))
-            if head == None:
-                head = tail = node
-            else:
-                tail.next = node
-                tail = node
-            
-        return head
-
-
+# Link - https://leetcode.com/problems/merge-k-sorted-lists/
     
 # Solution 2
     # Space: O(k)

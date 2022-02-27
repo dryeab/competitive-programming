@@ -1,14 +1,17 @@
-# link - https://leetcode.com/problems/top-k-frequent-elements/
 
-# space: O(n)
-# time: O(nlog(n))
+# Link - https://leetcode.com/problems/top-k-frequent-elements/
 
-class Solution:
-    def topKFrequent(self, nums: list[int], k: int) -> list[int]:
-        return list(map(lambda x: x[0], Counter(nums).most_common()))[:k]
+# Space: O(n)
+# Time: O(n*log(k))
 
 class Solution:
     def topKFrequent(self, nums: list[int], k: int) -> list[int]:
-        heap = list(map(lambda x: (-x[1], x[0]), Counter(nums).items()))
-        heapq.heapify(heap)
-        return list(map(lambda x: x[1], heapq.nsmallest(k, heap)))
+        
+        heap, count = [], Counter(nums)
+        
+        for num in count:
+            heapq.heappush(heap, (count[num], num))
+            while len(heap) > k:
+                heapq.heappop(heap)
+        
+        return map(lambda x: x[1], heap)
