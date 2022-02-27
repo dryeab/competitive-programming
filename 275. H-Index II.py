@@ -1,3 +1,9 @@
+
+# Link - https://leetcode.com/problems/h-index-ii/
+
+# Space: O(1)
+# Time: O(log(n))
+
 class Solution:
     def hIndex(self, citations: List[int]) -> int:
         
