@@ -1,6 +1,12 @@
 
 # Link - https://leetcode.com/problems/find-median-from-data-stream/
 
+# Space: O(n)
+
+# Time:
+    # __init__ : O(1)
+    # addNum: O(log(n))
+    # findMedian: O(1)
 
 class MedianFinder:
 

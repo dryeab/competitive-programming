@@ -1,24 +1,32 @@
 
 # Link - https://leetcode.com/problems/find-positive-integer-solution-for-a-given-equation/
 
-# Space: ~
-# Time: O(n*log(n))
+# Solution 1
+    # Space: ~
+    # Time: O(x + y)
 
 class Solution:
     def findSolution(self, customfunction: 'CustomFunction', z: int) -> List[List[int]]:
         
-        f = customfunction.f
+        ans, f, x = [], customfunction.f, 1000
         
-        ans = []
+        for i in range(1, 1001):
+            while x and f(x, i) > z:
+                x -= 1
+            if x and f(x, i) == z:
+                ans.append((x,i))
         
-        """
-        1, find the value of x (with y=1000) which gives above z
-        2, find the value of y for each x ( from step 1) which gives z
-            - y may not be available
-            - y can exist (only one y exist for a given x)
-        """
+        return ans
+
+# Space: ~
+# Time: O(x*log(y))
+
+class Solution:
+    def findSolution(self, customfunction: 'CustomFunction', z: int) -> List[List[int]]:
         
-        # find the smallest value of x
+        ans, f = [], customfunction.f
+        
+        # the smallest possible value of x
         start, end = 1, 1000
         while start < end:
             mid = (start + end)//2
@@ -28,8 +36,7 @@ class Solution:
                 end = mid
             else:
                 start = mid + 1
-        
-        # found the starting point of x which
+                
         start_x = start
         
         for x in range(start_x, 1001):
@@ -46,7 +53,4 @@ class Solution:
                 else:
                     start = mid + 1
                     
-#             if f(x, start) == z:
-#                 ans.append([x, mid])
-                
         return ans

@@ -1,42 +1,41 @@
 # Link - https://leetcode.com/problems/online-election/
 
+# Space: O(n)
+# Time:
+    # __init__: O(n)
+    # q: O(log(n))
+
 class TopVotedCandidate:
 
     def __init__(self, persons: List[int], times: List[int]):
         
-        votes, win = Counter(), {}
-        
-        cur_p = None
-        
+        leader, votes, win = None, Counter(), {}
+
         for i, person in enumerate(persons):
             
             votes[person] += 1
             
-            if cur_p == None or votes[person] >= votes[cur_p]:
-                cur_p = person
+            if leader == None or votes[person] >= votes[leader]:
+                leader = person
             
-            win[times[i]] = cur_p
+            win[times[i]] = leader
         
         self.win, self.times = win, times
         
     def q(self, t: int) -> int:
         
-        start, end = 0, len(self.times) - 1
-
-        while start < end:
+        left, right = 0, len(self.times) - 1
+        
+        while left < right:
             
-            mid = (start + end)//2
+            mid = (left + right)//2
             
-            if self.times[mid] == t:
-                return self.win[self.times[mid]]
-            
-            if self.times[mid] > t and (mid == 0 or self.times[mid-1] < t):
-                return self.win[self.times[mid-1]]
-            elif self.times[mid] > t:
-                end = mid -1
-            elif self.times[mid] < t and (mid == len(self.times) -1 or self.times[mid+1] > t):
-                return self.win[self.times[mid]] 
+            if self.times[mid] <= t:
+                left = mid + 1
             else:
-                start = mid + 1
-                
-        return self.win[self.times[start]]
+                right = mid
+
+        if self.times[left] > t:
+            left -= 1
+        
+        return self.win[self.times[left]]

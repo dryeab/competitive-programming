@@ -2,15 +2,15 @@
 
 # Solution 1
   # Space: O(1)
-  # Time: O(m*n)
+  # Time: O(m + n)
   
 class Solution:
     def countNegatives(self, grid: List[List[int]]) -> int:
-        ans = 0
-        for row in grid:
-            for col in row:
-              if col < 0:
-                and += 1
+        ans = col = 0
+        for row in range(len(grid)-1, -1, -1):
+            while col < len(grid[0]) and grid[row][col] >= 0:
+                col += 1
+            ans += len(grid[0]) - col
         return ans
 
 

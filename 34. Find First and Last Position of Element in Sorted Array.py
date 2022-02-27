@@ -3,39 +3,38 @@
 # Space: O(1)
 # Time: O(log(n))
 
-def search(nums: List[int], target: int, i, j) -> int:
-
-    while i <= j:
-        mid = (i+j)//2
-        if nums[mid] == target:
-            return mid
-        elif nums[mid] > target:
-            j = mid - 1
-        else:
-            i = mid + 1
-
-    return -1
-
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
         
-        val = search(nums, target, 0, len(nums)-1)
+        ans = [-1, -1]
         
-        if val == -1:
-            return [-1, -1]
+        if not len(nums): return ans
         
-        left = right = val
+        #### left index #######
+        left, right = 0, len(nums) - 1
+        while left < right:
+            mid = (left + right)//2
+            if nums[mid] >= target:
+                right = mid
+            else:
+                left = mid + 1
         
-        while True:
-            val = search(nums, target, 0, left-1)
-            if val == -1:
-                break;
-            left = val
+        if nums[left] != target: return ans
         
-        while True:
-            val = search(nums, target, right+1, len(nums)-1)
-            if val == -1:
-                break
-            right = val
+        ans[0] = left
         
-        return [left, right]
+        #### right index ####
+        right = len(nums) - 1
+        while left < right:
+            mid = (left + right)//2
+            if nums[mid] > target:
+                right = mid
+            else:
+                left = mid + 1
+        
+        if nums[left] != target:
+            left -= 1
+        
+        ans[1] = left
+        
+        return ans
