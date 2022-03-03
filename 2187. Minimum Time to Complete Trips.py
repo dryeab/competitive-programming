@@ -2,7 +2,7 @@
 # Link - https://leetcode.com/problems/minimum-time-to-complete-trips/
 
 # Space: O(1)
-# Time: ~
+# Time: O(n*log(D)) :-> D = sum(time)*totalTrips
 
 class Solution:
     def minimumTime(self, time: List[int], totalTrips: int) -> int:
