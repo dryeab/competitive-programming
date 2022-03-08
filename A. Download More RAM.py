@@ -1,3 +1,9 @@
+
+# Link - https://codeforces.com/problemset/problem/1629/A
+
+# Space: O(n)
+# Time: O(n^2)
+
 from collections import Counter
 
 def solution(a, b, k):
