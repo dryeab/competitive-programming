@@ -1,26 +1,16 @@
-# link - https://leetcode.com/problems/unique-paths/
 
-# space: O(n)
-# time: O(m*n)
+# Link - https://leetcode.com/problems/unique-paths/
+
+# Space: O(m*n)
+# Time: O(m*n)
 
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
         
-        memo = {(m, n):0}
+        dp = [[1 for i in range(n)] for j in range(m)]
         
-        if n == 1 and m == 1:
-            return 1
+        for i in range(1, m):
+            for j in range(1, n):
+                dp[i][j] = (dp[i-1][j] if i else 0) + (dp[i][j-1] if j else 0)
         
-        def helper(i, j):
-            if (i, j) not in memo:
-                if j == n or i == m:
-                    ans = 1
-                else:
-                    ans = helper(i+1, j) + helper(i, j+1)
-                    
-                memo[(i, j)] = ans
-            
-            return memo[(i, j)]
-        
-        return helper(1, 1)
-            
+        return dp[-1][-1]

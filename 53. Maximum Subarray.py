@@ -1,6 +1,10 @@
 
 
-# link - https://leetcode.com/problems/maximum-subarray/
+# Link - https://leetcode.com/problems/maximum-subarray/
+
+# Solution 1 - Kadane
+    # Space: O(1)
+    # Time: O(n)
 
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
@@ -23,3 +27,19 @@ class Solution:
             end += 1
         
         return ans
+
+# Solution 2 - DP
+    # Space: O(1)
+    # Time: O(n)
+
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        
+        dp = nums[0]
+        M = dp
+        
+        for i in range(1, len(nums)):
+            dp = nums[i] + (dp if dp > 0 else 0)
+            M = max(M, dp)
+        
+        return M

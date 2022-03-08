@@ -1,22 +1,18 @@
-# link - https://leetcode.com/problems/house-robber/
 
-# space: O(n)
-# time: O(n**2)
+# Link - https://leetcode.com/problems/house-robber/
+
+# Space: O(n)
+# Time: O(n)
 
 class Solution:
     def rob(self, nums: List[int]) -> int:
         
-        memo = {}
+        M, dp = 0, [0] * len(nums)
         
-        def helper(nums, i):
-            if i not in memo:
-                
-                ans = 0
-                for j in range(i+2 if i != -1 else 0 , len(nums)):
-                    ans = max(ans, helper(nums, j))
-                    
-                memo[i] = nums[i] + ans if i != -1 else ans
-                
-            return memo[i]
+        for i in range(len(nums)):
+            
+            M = max(M, dp[i-2]) if i - 2 >= 0 else 0
+            
+            dp[i] = M + nums[i]
         
-        return helper(nums, -1)
+        return max(dp)
