@@ -6,9 +6,9 @@
 
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
-        dp = nums[0]
+        M = nums[0] # maximum i you could possibly reach
         for i, num in enumerate(nums):
-            if dp < i:
+            if M < i:
                 return False
-            dp = max(dp, i + num)
+            M = max(M, i + num)
         return True
