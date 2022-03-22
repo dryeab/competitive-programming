@@ -7,26 +7,20 @@
 class Solution:
     def partitionLabels(self, s: str) -> List[int]:
         
-        index = {char: [-1, -1] for char in s}
-        
+        index = Counter()
         for i in range(len(s)):
-            if index[s[i]][0] == -1:
-                index[s[i]] = [i, i]
-            else:
-                index[s[i]][1] = i
+            index[s[i]] = i
         
-        
-        answer = []
-        j = length = 0
+        M, length, answer = 0, 0, [] # max index, length so far, answer
         
         for i in range(len(s)):
             
             length += 1
             
-            j = max(index[s[i]][1], j)
+            M = max(index[s[i]], M)
             
-            if i == j:
+            if i == M:
                 answer.append(length)
-                j = length = 0
+                M = length = 0
         
         return answer
