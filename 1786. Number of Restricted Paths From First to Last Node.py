@@ -2,7 +2,7 @@
 # Link - https://leetcode.com/problems/number-of-restricted-paths-from-first-to-last-node/
 
 # Space: 
-# Time:
+# Time: O(m*log(n)) :-> m = len(edges)
 
 class Solution:
     def countRestrictedPaths(self, n: int, edges: List[List[int]]) -> int:
