@@ -1,28 +1,22 @@
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
+
+# Link - https://leetcode.com/problems/lowest-common-ancestor-of-deepest-leaves/
+
+# Space: O(h) : h = findMaxDepth(root)
+# Time: O(n)
 
 class Solution:
     def lcaDeepestLeaves(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         
+        depth = {None: 0} # memo
         def findMaxDepth(node):
-            if not node:
-                return 0
-            return 1 + max(findMaxDepth(node.left), findMaxDepth(node.right))
+            if node not in depth:
+                depth[node] = 1 + max(findMaxDepth(node.left), findMaxDepth(node.right))
+            return depth[node]
         
-        node = root
-        
-        while node:
+        while root:
+
+            ld, rd = findMaxDepth(root.left), findMaxDepth(root.right)
             
-            left, right = findMaxDepth(node.left), findMaxDepth(node.right)
+            if ld == rd: return root
             
-            if left == right:
-                return node
-            
-            if left > right:
-                node = node.left
-            else:
-                node = node.right
+            root = root.left if ld > rd else root.right

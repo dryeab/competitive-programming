@@ -1,33 +1,39 @@
+
+# Link - https://leetcode.com/problems/surrounded-regions/
+
+# Space: O(m * n)
+# Time: O(m * n)
+
 class Solution:
     def solve(self, board: List[List[str]]) -> None:
-        """
-        Do not return anything, modify board in-place instead.
-        """
         
-        m, n, visited = len(board), len(board[0]), set()
-        DIR = [(0, -1), (0, 1), (-1, 0), (1, 0)]
+        m, n = len(board), len(board[0])
         inBound = lambda r, c: 0 <= r < m and 0 <= c < n
         
-        def markRegion(r, c, marker):
-            visited.add((r,c))
-            board[r][c] = marker
-            for d in DIR:
-                nr, nc = r + d[0], c + d[1]
-                if inBound(nr, nc) and board[nr][nc] == 'O' and (nr, nc) not in visited:
-                    markRegion(nr, nc, marker)
+        def dfs(r, c):
+            if not inBound(r, c) or board[r][c] != 'O':
+                return
+            
+            board[r][c] = "#"
+                
+            dfs(r + 1, c) # right
+            dfs(r - 1, c) # left
+            dfs(r, c + 1) # down
+            dfs(r, c - 1) # up
         
-        # mark the boarders first
+        #### Mark the border regions first ####
+        
         for r in [0, m-1]:
             for c in range(n):
-                if board[r][c] == 'O' and (r, c) not in visited:
-                    markRegion(r, c, 'O')
-                    
+                dfs(r, c)
+                
         for c in [0, n-1]:
             for r in range(m):
-                if board[r][c] == 'O' and (r, c) not in visited:
-                    markRegion(r, c, 'O')
-                    
+                dfs(r, c)
+                
+        #############################
+        
         for r in range(m):
             for c in range(n):
-                if board[r][c] == 'O' and (r, c) not in visited:
-                    markRegion(r, c, 'X')
+                if board[r][c] == 'O': board[r][c] = 'X'
+                if board[r][c] == '#': board[r][c] = 'O'

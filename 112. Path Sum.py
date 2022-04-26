@@ -1,20 +1,19 @@
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
+
+# Link - https://leetcode.com/problems/path-sum/submissions/
+
+# Space: O(n)
+# Time: O(n)
+
 class Solution:
     def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
         
-        def dfs(node, sumSoFar):
+        def dfs(node, sum):
             
-            sumSoFar += node.val
+            sum += node.val
             
             if not (node.left or node.right):
-                return sumSoFar == targetSum
+                return sum == targetSum
             
-            return (dfs(node.left, sumSoFar) if node.left else False) or \
-                        (dfs(node.right, sumSoFar) if node.right else False)
+            return (node.left and dfs(node.left, sum)) or (node.right and dfs(node.right, sum))
         
-        return dfs(root, 0) if root else False
+        return root and dfs(root, 0)

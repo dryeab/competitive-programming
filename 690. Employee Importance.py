@@ -1,25 +1,37 @@
-"""
-# Definition for Employee.
-class Employee:
-    def __init__(self, id: int, importance: int, subordinates: List[int]):
-        self.id = id
-        self.importance = importance
-        self.subordinates = subordinates
-"""
 
+# Link - https://leetcode.com/problems/employee-importance/
+
+# Space: O(n)
+# Time: O(n)
+
+# DFS
 class Solution:
     def getImportance(self, employees: List['Employee'], id: int) -> int:
         
-        mapper = {employee.id: i for i, employee in enumerate(employees)}
+        employees = {emp.id: emp for emp in employees}
         
-        def helper(id):
+        def dfs(id):
             
-            employee = employees[mapper[id]]
-            total = employee.importance
+            emp = employees[id]
             
-            for sub in employee.subordinates:
-                total += helper(sub)
-                
-            return total
+            return emp.importance + sum(dfs(sub_id) for sub_id in emp.subordinates)
+
+        return dfs(id)
+
+
+# BFS
+class Solution:
+    def getImportance(self, employees: List['Employee'], id: int) -> int:
         
-        return helper(id)
+        emps = {emp.id: emp for emp in employees}
+        
+        answer, q = 0, deque([id])
+        while q:
+            
+            emp = emps[q.popleft()]
+            answer += emp.importance
+            
+            for sub in emp.subordinates:
+                q.append(sub)
+        
+        return answer
