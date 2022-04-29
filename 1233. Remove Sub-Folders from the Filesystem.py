@@ -37,3 +37,57 @@ class Solution:
                         break
         
         return list(c_folder)
+
+# Solution 3: Trie
+
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.isEnd = False
+    
+class Trie:
+
+    def __init__(self):
+        self.root = TrieNode()
+
+    def insert(self, word: str) -> None:
+        
+        current = self.root
+        
+        for char in word.split("/"):
+            if char:
+                if char not in current.children:
+                    if current.isEnd: return
+                    current.children[char] = TrieNode()
+                current = current.children[char]
+        
+        current.children = {} # remove all its subfolders
+        current.isEnd = True
+
+    def search(self, word: str, isPrefix=False) -> bool:
+        
+        current = self.root
+        
+        for char in word.split("/"):
+            if char:
+                if char not in current.children:
+                    return False
+                current = current.children[char]
+                
+        current.isEnd = False
+        return True
+    
+class Solution:
+    def removeSubfolders(self, folder: List[str]) -> List[str]:
+        
+        trie = Trie()
+        for f in folder: trie.insert(f)
+        
+        result = []
+        for f in folder:
+            if f.endswith("/"):
+                if trie.search(f[:-1]): continue
+            if trie.search(f):
+                result.append(f)
+                
+        return result
