@@ -1,3 +1,10 @@
+
+# Link - https://leetcode.com/problems/word-ladder/
+
+# Space: O(m * n)
+# Time: O(n * m^2)
+
+# BFS
 class Solution:
     def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
         
@@ -9,8 +16,7 @@ class Solution:
             for _ in range(len(q)):
                 word = q.popleft()
                 
-                if word == endWord:
-                    return count
+                if word == endWord: return count
                 
                 for i in range(len(word)):
                     for j in range(ord('a'), ord('z')+1):
