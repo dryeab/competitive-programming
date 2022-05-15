@@ -1,31 +1,52 @@
 
 # Link - https://leetcode.com/problems/letter-combinations-of-a-phone-number/
 
-# Space: O(1)
-# Time: O(n)
+# Space: O(4^n)
+# Time: O(4^n)
+
+# Iterative
+class Solution:
+
+    def letterCombinations(self, digits: str) -> List[str]:
+
+        if not digits:
+            return []
+
+        mapping = ["", "", "abc", "def", "ghi",
+                   "jkl", "mno", "pqrs", "tuv", "wxyz"]
+
+        ans = [""]
+
+        for digit in digits:
+            new_ans = []
+            for char in mapping[int(digit)]:
+                for each in ans:
+                    new_ans.append(each + char)
+            ans = new_ans
+
+        return ans
+
+
+# Recursive
+mapping = ["", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"]
+
 
 class Solution:
-    def letterCombinations(self, digits: str) -> List[str]:
-        
-        lowercases, mapper = list(string.ascii_lowercase[::-1]), defaultdict(list)
-        
-        for i, num in enumerate([3, 3, 3, 3, 3, 4, 3, 4]):
-            for _ in range(num):
-                mapper[i+2].append(lowercases.pop())
-        
-        def helper(digits):
-            
-            if len(digits) == 0:
-                return []
-            if len(digits) == 1:
-                return mapper[int(digits[0])]
-            
-            ans = []
-            for letter in mapper[int(digits[0])]:
-                for combination in helper(digits[1:]):
-                    ans.append(letter + combination)
-            
-            return ans
-            
-        return helper(digits)
-            
+
+    def letterCombinations(self, digits: str, i=0) -> List[str]:
+
+        if i == len(digits):
+            return []
+
+        digit = int(digits[i])
+
+        if i == len(digits) - 1:
+            return list(mapping[digit])
+
+        ans = []
+
+        for val in self.letterCombinations(digits, i+1):
+            for char in list(mapping[digit]):
+                ans.append(char + val)
+
+        return ans
