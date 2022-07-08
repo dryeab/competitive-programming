@@ -3,13 +3,11 @@
 
 using namespace std;
 
-struct segment_tree
-{
+struct segment_tree {
     int n;
     vector<long long> tree;
 
-    void init(vector<long long> &arr)
-    {
+    void init(vector<long long> &arr) {
         n = 1;
         while (n < arr.size())
             n *= 2;
@@ -17,8 +15,7 @@ struct segment_tree
         arr.resize(n, 0);
         tree.resize(2 * n, 0);
 
-        for (int i = 2 * n - 1; i >= 1; --i)
-        {
+        for (int i = 2 * n - 1; i >= 1; --i) {
             if (i >= n)
                 tree[i] = arr[i - n];
             else
@@ -26,14 +23,12 @@ struct segment_tree
         }
     }
 
-    long long sum(int l, int r)
-    {
+    long long sum(int l, int r) {
         l += n;
         r += n;
 
         long long res = 0;
-        while (l <= r)
-        {
+        while (l <= r) {
             if (l % 2 == 1)
                 res += tree[l++];
             if (r % 2 == 0)
@@ -45,8 +40,7 @@ struct segment_tree
         return res;
     }
 
-    void set(int i, int v)
-    {
+    void set(int i, int v) {
         i += n;
         tree[i] = v;
 
@@ -55,8 +49,11 @@ struct segment_tree
     }
 };
 
-int main()
-{
+int main() {
+
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+
     int n, m;
     cin >> n >> m;
 
@@ -67,8 +64,7 @@ int main()
     segment_tree st;
     st.init(arr);
 
-    while (m--)
-    {
+    while (m--) {
         int op, a, b;
         cin >> op >> a >> b;
 
