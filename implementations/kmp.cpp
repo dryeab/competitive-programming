@@ -24,7 +24,7 @@ vector<int> pi(const string &s) {
 int kmp(string &s, string &p) {
 
     int n = s.size(), m = p.size();
-    string new_string = p + "#" + s; // -#- can be any character that doesn't appear both in p and s
+    string new_string = p + "#" + s; // -#- can be any string that doesn't appear both in p and s
     vector<int> pi_p = pi(new_string);
 
     for (int i = m + 1; i < n + m + 1; ++i)
