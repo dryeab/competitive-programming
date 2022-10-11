@@ -25,7 +25,8 @@ def main():
     pass
 
 if __name__ == '__main__':
-    # if recustion?
+    
+    # if recursion?
     # sys.setrecursionlimit(1 << 30)
     # threading.stack_size(1 << 27)
 
