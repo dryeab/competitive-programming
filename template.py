@@ -21,16 +21,19 @@ def imint():
     """ Map[int] """
     return map(int,input().split())
 
+found_recursion = False 
+
 def main():
     pass
 
 if __name__ == '__main__':
     
-    # if recursion?
-    # sys.setrecursionlimit(1 << 30)
-    # threading.stack_size(1 << 27)
+    if found_recursion:
+        sys.setrecursionlimit(1 << 30)
+        threading.stack_size(1 << 27)
 
-    main_thread = threading.Thread(target=main)
-    main_thread.start()
-    main_thread.join()
-
+        main_thread = threading.Thread(target=main)
+        main_thread.start()
+        main_thread.join()
+    else:
+        main()
