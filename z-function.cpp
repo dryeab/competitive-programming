@@ -10,6 +10,7 @@ using namespace std;
       prefix of s such that s[i:i+z[i]] is equal to s[:z[i]]
     - The main idea is to keep track of the rightmost substring that is the prefix
       of the string
+    - For more: https://cp-algorithms.com/string/z-function.html
 */
 
 vector<int> zfunc(string& s) {
